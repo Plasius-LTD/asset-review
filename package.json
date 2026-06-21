@@ -1,6 +1,6 @@
 {
   "name": "@plasius/asset-review",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Screenshot review plans and AI review policy helpers for Plasius asset promotion.",
   "type": "module",
   "sideEffects": false,
