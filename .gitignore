@@ -2,6 +2,7 @@ node_modules/
 dist/
 coverage/
 .npm-cache-packcheck/
+/legal/CLA-REGISTRY.csv
 *.log
 # Private key material in cert directories (never commit)
 **/certs/**/*-key.pem

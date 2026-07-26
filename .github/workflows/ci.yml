@@ -30,6 +30,9 @@ jobs:
       - name: Security audit (runtime deps)
         run: npm run audit:npm
 
+      - name: Verify public artifact admission
+        run: npm run pack:check
+
       - name: Build
         run: npm run build --if-present
 
@@ -84,10 +87,16 @@ jobs:
           }
 
       - name: Upload coverage to Codecov
+        id: codecov
+        continue-on-error: true
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ${{ env.LCOV_FILE }}
           flags: unittests
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           slug: ${{ github.repository }}
+
+      - name: Report Codecov upload warning
+        if: always() && steps.codecov.outcome == 'failure'
+        run: echo "::warning title=Codecov upload unavailable::Coverage passed locally, but the external upload was unavailable."
