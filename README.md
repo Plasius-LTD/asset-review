@@ -35,7 +35,7 @@ npm run pack:check
 `pack:check` fails closed if the administrative contributor registry is tracked
 or appears in the npm tarball inventory. CI remains on approved self-hosted
 capacity; npm publication runs only from the GitHub-hosted `cd.yml` job using
-the `production` environment and npm trusted publishing.
+the `production` environment, Node 24.18 LTS, and npm trusted publishing.
 
 ## Governance
 

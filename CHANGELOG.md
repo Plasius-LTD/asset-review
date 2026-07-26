@@ -6,7 +6,7 @@
   - (placeholder)
 
 - **Changed**
-  - Kept CI on approved self-hosted runners while moving npm publication to a GitHub-hosted trusted-publishing job.
+  - Kept CI on approved self-hosted runners while moving npm publication to a GitHub-hosted trusted-publishing job pinned to Node 24.18 LTS.
 
 - **Fixed**
   - (placeholder)

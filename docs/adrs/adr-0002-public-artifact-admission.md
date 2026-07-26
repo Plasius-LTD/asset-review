@@ -12,7 +12,9 @@ public-data surface and makes correction harder than preventing admission.
 
 Package CI uses controlled self-hosted capacity. npm trusted publishing,
 however, requires a supported cloud-hosted runner and an OIDC identity tied to
-the repository, workflow, and optional deployment environment.
+the repository, workflow, and optional deployment environment. Node 24.18 LTS
+bundles an npm client above the trusted-publishing minimum, so the workflow
+does not need a separately installed global npm client.
 
 ## Decision
 
@@ -22,7 +24,8 @@ the repository, workflow, and optional deployment environment.
 - Run the admission check in CI and again immediately before publication.
 - Keep CI on approved self-hosted runners.
 - Run npm publication on `ubuntu-latest`, through the GitHub `production`
-  environment, with `id-token: write` and npm trusted publishing.
+  environment, with Node 24.18 LTS, `id-token: write`, and npm trusted
+  publishing.
 - Do not use a long-lived npm write token.
 
 ## Consequences
