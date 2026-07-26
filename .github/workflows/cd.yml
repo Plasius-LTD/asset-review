@@ -40,7 +40,7 @@ jobs:
 
   publish:
     needs: prepare_release
-    runs-on: ${{ fromJSON(vars.CD_RUNNER_LABELS || '["self-hosted","Linux","X64"]') }}
+    runs-on: ubuntu-latest
     environment: production
     steps:
       - name: Checkout prepared release commit
@@ -55,6 +55,9 @@ jobs:
           node-version-file: ".nvmrc"
           registry-url: "https://registry.npmjs.org"
           cache: npm
+
+      - name: Use OIDC-capable npm
+        run: npm install --global npm@12.0.1
 
       - name: Use prepared release metadata
         id: release
@@ -230,16 +233,11 @@ jobs:
       - name: Publish package
         if: steps.release.outputs.should_publish_npm == 'true'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           FLAGS: ${{ steps.release.outputs.flags }}
           PACKAGE_NAME: ${{ steps.release.outputs.package_name }}
           PACKAGE_VERSION: ${{ steps.release.outputs.release_version }}
         run: |
           set -euo pipefail
-          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
-            echo "NPM_TOKEN is required" >&2
-            exit 1
-          fi
 
           if npm view "${PACKAGE_NAME}@${PACKAGE_VERSION}" version --registry https://registry.npmjs.org >/dev/null 2>&1; then
             echo "${PACKAGE_NAME}@${PACKAGE_VERSION} already exists on npm; skipping duplicate publish."

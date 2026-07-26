@@ -1,9 +1,13 @@
 #!/usr/bin/env node
-const { execSync } = require("node:child_process");
+const { execFileSync, execSync } = require("node:child_process");
 const fs = require("node:fs");
 const path = require("node:path");
 
+const FORBIDDEN_REGISTRY_PATH = "legal/cla-registry.csv";
+
 function main() {
+  verifyTrackedPaths();
+
   const cacheDir = path.resolve(process.cwd(), ".npm-cache-packcheck");
   const output = execSync(
     `npm pack --dry-run --json --ignore-scripts --cache "${cacheDir}"`,
@@ -18,6 +22,10 @@ function main() {
   const paths = files.map((entry) => entry.path);
 
   const forbiddenTarballPathPatterns = [
+    {
+      label: "administrative contributor registry",
+      regex: /^legal\/cla-registry\.csv$/i,
+    },
     {
       label: "private monorepo path",
       regex: /(?:^|\/)plasius-ltd-site(?:\/|$)/i,
@@ -96,6 +104,36 @@ function main() {
   console.log("Public package check passed.");
 }
 
+function normalizeRepositoryPath(filePath) {
+  return String(filePath).replaceAll("\\", "/").replace(/^\.\/+/u, "").toLowerCase();
+}
+
+function isForbiddenRegistryPath(filePath) {
+  return normalizeRepositoryPath(filePath) === FORBIDDEN_REGISTRY_PATH;
+}
+
+function verifyTrackedPaths() {
+  const trackedPaths = execFileSync("git", ["ls-files", "-z"], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  })
+    .split("\0")
+    .filter(Boolean);
+
+  const forbiddenPaths = trackedPaths.filter(isForbiddenRegistryPath);
+  if (forbiddenPaths.length === 0) {
+    return;
+  }
+
+  console.error(
+    "Public package check failed. Administrative contributor registry is tracked:"
+  );
+  for (const filePath of forbiddenPaths) {
+    console.error(`- ${filePath}`);
+  }
+  process.exit(1);
+}
+
 function parseNpmPackJson(rawOutput) {
   const start = rawOutput.indexOf("[");
   const end = rawOutput.lastIndexOf("]");
@@ -169,4 +207,11 @@ function collectFiles(root, extensions) {
   return files;
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  isForbiddenRegistryPath,
+  normalizeRepositoryPath,
+};
