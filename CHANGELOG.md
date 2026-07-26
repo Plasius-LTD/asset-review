@@ -13,6 +13,7 @@
 
 - **Security**
   - Removed the administrative contributor registry from the public source and package boundary and added fail-closed Git-index and tarball checks.
+  - Refreshed vulnerable transitive build-tool dependencies used by local and CI validation.
 
 ## [0.1.3] - 2026-06-28
 
