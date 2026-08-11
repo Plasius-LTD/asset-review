@@ -7,6 +7,7 @@
 
 - **Changed**
   - Kept CI on approved self-hosted runners while moving npm publication to a GitHub-hosted trusted-publishing job pinned to Node 24.18 LTS.
+  - Bound publication to the exact prepared `main` commit after successful push-triggered CI.
 
 - **Fixed**
   - (placeholder)
@@ -14,6 +15,7 @@
 - **Security**
   - Removed the administrative contributor registry from the public source and package boundary and added fail-closed Git-index and tarball checks.
   - Refreshed vulnerable transitive build-tool dependencies used by local and CI validation.
+  - Added a fail-closed npm 11.5.1-or-newer OIDC guard and denied fork PR code access to self-hosted CI.
 
 ## [0.1.3] - 2026-06-28
 
