@@ -6,6 +6,20 @@
   - (placeholder)
 
 - **Changed**
+  - (placeholder)
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [0.1.4] - 2026-08-30
+
+- **Added**
+  - (placeholder)
+
+- **Changed**
   - Kept CI on approved self-hosted runners while moving npm publication to a GitHub-hosted trusted-publishing job pinned to Node 24.18 LTS.
   - Bound publication to the exact prepared `main` commit after successful push-triggered CI.
 
@@ -54,3 +68,4 @@
 [0.1.1]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.1
 [0.1.2]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.2
 [0.1.3]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.3
+[0.1.4]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.4
