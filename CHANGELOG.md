@@ -6,6 +6,20 @@
   - (placeholder)
 
 - **Changed**
+  - (placeholder)
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [0.1.5] - 2026-08-31
+
+- **Added**
+  - (placeholder)
+
+- **Changed**
   - Enabled exact-head manual CI dispatch for reviewed release validation.
   - (placeholder)
 
@@ -72,3 +86,4 @@
 [0.1.2]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.2
 [0.1.3]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.3
 [0.1.4]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.4
+[0.1.5]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.5
