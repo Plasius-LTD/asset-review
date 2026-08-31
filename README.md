@@ -34,8 +34,10 @@ npm run pack:check
 
 `pack:check` fails closed if the administrative contributor registry is tracked
 or appears in the npm tarball inventory. CI remains on approved self-hosted
-capacity; npm publication runs only from the GitHub-hosted `cd.yml` job using
-the `production` environment, Node 24.18 LTS, and npm trusted publishing.
+capacity for same-repository pull requests and `main`, while fork PR code is
+denied. npm publication runs only from the GitHub-hosted `production` job using
+Node 24 and npm 11.5.1 or newer. It remains token-free and is admitted only
+while the prepared SHA is the exact `main` head after successful push CI.
 
 ## Governance
 
