@@ -10,6 +10,8 @@
   - (placeholder)
 
 - **Fixed**
+  - Disabled package-manager caching on self-hosted CI to prevent cache-save
+    cleanup stalls from blocking the validation queue.
   - (placeholder)
 
 - **Security**
