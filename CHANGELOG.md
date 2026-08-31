@@ -6,6 +6,7 @@
   - (placeholder)
 
 - **Changed**
+  - Enabled exact-head manual CI dispatch for reviewed release validation.
   - (placeholder)
 
 - **Fixed**
