@@ -12,6 +12,7 @@
   - (placeholder)
 
 - **Security**
+  - Updated Vitest and its coverage adapter to 4.1.11 and pinned `brace-expansion` 5.0.9 and `nanoid` 3.3.18 to clear the current advisories.
   - (placeholder)
 
 ## [0.1.5] - 2026-08-31
