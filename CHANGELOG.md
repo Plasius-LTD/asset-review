@@ -3,7 +3,10 @@
 ## Unreleased
 
 - **Added**
-  - (placeholder)
+  - Validate and freeze provider-neutral AI/human review reports with canonical
+    asset identity, captures, evidence references, source metadata, UTC timestamps
+    and derived blocking/pass/readiness disposition. Reuse published
+    `@plasius/asset-contracts@0.4.6`; readiness still requires separate human approval.
 
 - **Changed**
   - (placeholder)

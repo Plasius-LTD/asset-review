@@ -8,7 +8,7 @@ Asset Review Package Boundary
 
 ## Status
 
-- Proposed
+- Accepted
 - Date: 2026-05-27
 - Version: 1.0
 
@@ -30,6 +30,12 @@ The unified AI asset pipeline needs stable package boundaries so local seed asse
 
 Keep screenshot review planning and AI review policy separate from rendering implementation and model processing.
 
+Normalized review reports and approval-readiness policy are implemented here as
+specified in ADR 0004. Reuse published `@plasius/asset-contracts` for the asset
+identity/version validators, severity/capture vocabulary and base report shape.
+The package validates evidence metadata without rendering, fetching artifacts,
+invoking an AI provider, authenticating reviewers or granting promotion authority.
+
 ---
 
 ## Alternatives Considered
@@ -50,3 +56,6 @@ Keep screenshot review planning and AI review policy separate from rendering imp
 ## Related Decisions
 
 - plasius-ltd-site ADR 0069: Use a Unified AI Asset Pipeline with Dedicated Asset Packages
+- plasius-ltd-site `docs/adrs/adr-0084-unified-ai-asset-pipeline-packages.md`
+- plasius-ltd-site `docs/tdrs/tdr-0004-unified-ai-asset-pipeline.md`
+- [ADR 0004: Normalized Review Reports](adr-0004-normalized-review-reports.md)
