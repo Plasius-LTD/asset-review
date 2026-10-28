@@ -96,6 +96,7 @@
     "minimatch": "^10.2.1"
   },
   "dependencies": {
+    "@plasius/ai-governance": "0.1.10",
     "@plasius/asset-contracts": "0.4.6"
   }
 }

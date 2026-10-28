@@ -3,6 +3,7 @@ import { ASSET_SCREENSHOT_KINDS } from "@plasius/asset-contracts";
 export { summarizeReviewFindings } from "./review-findings.js";
 export type { ReviewFindingLike, ReviewFindingSummary } from "./review-findings.js";
 export * from "./review-report.js";
+export * from "./model-review.js";
 
 export const ASSET_REVIEW_PACKAGE = "@plasius/asset-review";
 

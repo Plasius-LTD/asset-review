@@ -3,7 +3,9 @@
 ## Unreleased
 
 - **Added**
-  - (placeholder)
+  - Canonical four-view candidate review and explicit human-confirmation helpers,
+    composed with the published ranker assurance policy. Preserve independent
+    hard gates, immutable evidence, bounded diagnostics and exact replay detection.
 
 - **Changed**
   - (placeholder)

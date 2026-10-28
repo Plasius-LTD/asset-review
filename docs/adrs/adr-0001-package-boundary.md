@@ -59,3 +59,4 @@ invoking an AI provider, authenticating reviewers or granting promotion authorit
 - plasius-ltd-site `docs/adrs/adr-0084-unified-ai-asset-pipeline-packages.md`
 - plasius-ltd-site `docs/tdrs/tdr-0004-unified-ai-asset-pipeline.md`
 - [ADR 0004: Normalized Review Reports](adr-0004-normalized-review-reports.md)
+- [ADR 0005: Four-view Model Review and Explicit Confirmation](adr-0005-four-view-model-confirmation.md)
