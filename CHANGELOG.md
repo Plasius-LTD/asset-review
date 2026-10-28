@@ -3,6 +3,20 @@
 ## Unreleased
 
 - **Added**
+  - (placeholder)
+
+- **Changed**
+  - (placeholder)
+
+- **Fixed**
+  - (placeholder)
+
+- **Security**
+  - (placeholder)
+
+## [0.3.0] - 2026-10-28
+
+- **Added**
   - Canonical four-view candidate review and explicit human-confirmation helpers,
     composed with the published ranker assurance policy. Preserve independent
     hard gates, immutable evidence, bounded diagnostics and exact replay detection.
@@ -175,3 +189,4 @@
 [0.1.8]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.8
 [0.1.9]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.1.9
 [0.2.0]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.2.0
+[0.3.0]: https://github.com/Plasius-LTD/asset-review/releases/tag/v0.3.0
