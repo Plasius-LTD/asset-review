@@ -112,6 +112,66 @@ tooling. No local/unpublished package references are used. See
 [ADR 0004](docs/adrs/adr-0004-normalized-review-reports.md) for the boundary,
 tests and release route.
 
+## Four-view model confirmation
+
+```ts
+import {
+  assessModelCandidateReview,
+  confirmReviewedModelCandidate,
+} from "@plasius/asset-review";
+
+const review = assessModelCandidateReview(candidatePayload);
+if (review.confirmationReady) {
+  // Obtain an explicit authenticated human decision over this exact view pack.
+  const result = confirmReviewedModelCandidate(
+    review.candidate,
+    humanConfirmationPayload,
+    previouslyStoredConfirmation, // optional; an exact replay sets duplicate=true
+  );
+  // Persist through the host's atomic confirmation/idempotency boundary.
+}
+```
+
+These additive helpers reuse published `@plasius/asset-contracts@0.4.6` evidence
+validators and `@plasius/ai-governance@0.1.10` assurance policy. The returned
+`assurance` snapshot retains raw score/band, effective band, evidence mode,
+exact-match status, declared/applied ceilings, policy version and stable ceiling
+reasons. Ordinary scores below 0.50 are none, 0.50 to below 0.75 are low, and
+0.75 or above are high; canonical exact-identifier evidence and declared/evidence
+ceilings apply. Text-only evidence cannot exceed low. Malformed input throws
+`ModelCandidateReviewError` with a value-free stable `code`.
+
+Candidates require unique, identity-scoped front/left/top/isometric PNG originals
+at 1024×1024, matching render hashes and canonical processing/rights/provenance
+evidence. Technical, malware, human/accessibility review, converter and fidelity
+gates remain independent of semantic confidence. None cannot be confirmed;
+low requires explicit `semanticRiskAccepted: true`, while high requires false.
+Confirmation binds candidate/resolution, opaque token, ordered view hashes,
+reviewer identity and evidence time. A different valid prior confirmation fails
+with `confirmation-conflict`; exact replay returns `duplicate: true`.
+
+`confirmationReady` is structural policy, never approval or promotion authority.
+The host must authenticate and bind `confirmedBy` to the actual human, enforce
+confirmation/review capabilities, verify token signatures and referenced image
+bytes/render integrity, and compare-and-set durable state atomically. These pure
+helpers perform no network/file I/O, cryptographic verification, rendering,
+persistence, token issuance or promotion. Supplied prior evidence is not a
+substitute for querying the authoritative store. Neither helper returns a
+`promotionReady` grant. Existing capture/normalization APIs are unchanged.
+
+Raw inputs must be plain data records and dense ordinary arrays without
+accessors, symbol/hidden properties or prototype keys. Traversal is bounded to
+65,536 values, 1,048,576 characters, depth 24, 1,024 items per array, 64 keys per
+record and 2,048 characters per string; canonical field limits also apply.
+Outputs own deeply frozen copies. Disable/unavailable parent stored rollout
+flag means callers pause new orchestration; input/human gates stay mandatory.
+Rollback consumption through the consumer's approved release route, retaining
+these gates. Consumers may dynamically import at their asynchronous review
+entry point; the deterministic library adds no remote evaluator or env switch.
+
+See [ADR 0005](docs/adrs/adr-0005-four-view-model-confirmation.md) for trust,
+idempotency, dependency and test boundaries.
+
 ## Related Documents
 
 - plasius-ltd-site `docs/Design/unified-ai-asset-pipeline.md`
